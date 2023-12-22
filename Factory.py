@@ -20,7 +20,7 @@ class Factory:
             self.maintenance_threshold = int(input_file.readline().strip())
             for i in range(self.machine_count-1):
                 machine_init_info = input_file.readline().strip().split()
-                self.machine_list.append(Machine(int(machine_init_info[0]), int(machine_init_info[1]), machine_init_info[2]))
+                self.machine_list.append(Machine(int(machine_init_info[0]), int(machine_init_info[1]), machine_init_info[2], self.maintenance_threshold, self.wear_factor_dict))
             parent_machines = set([machine.pid for machine in self.machine_list])
             leaf_machines = set([machine.id for machine in self.machine_list]).difference(parent_machines)
             for id in leaf_machines:
@@ -34,7 +34,7 @@ class Factory:
             self.machine_dict[machine.id] = machine
         for machine in self.machine_list:
             if machine.pid not in self.machine_dict:
-                self.machine_dict[machine.pid] = Machine(machine.pid, 0, None)
+                self.machine_dict[machine.pid] = Machine(machine.pid, 0, None, self.maintenance_threshold, self.wear_factor_dict)
         for machine in self.machine_list:
             self.machine_dict[machine.pid].children.append(machine.id)
     

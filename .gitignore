@@ -1,0 +1,4 @@
+__pycache__/
+mpi4py-examples/
+input.txt
+mpi.py
