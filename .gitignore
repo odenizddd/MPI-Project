@@ -1,4 +1,6 @@
 __pycache__/
 mpi4py-examples/
 input.txt
+output.txt
 mpi.py
+TODO
