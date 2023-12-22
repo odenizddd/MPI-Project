@@ -36,7 +36,9 @@ class Machine():
         data_list = []
         for child in self.children:
             data = comm.recv(source=child)
-            data_list.append(data)
+            data_list.append([child, data])
+        sorted_data = sorted(data_list, key=lambda x:x[0])
+        data_list = [pair[1] for pair in sorted_data]
         self.product = "".join(data_list)      
 
     # For updating next operation and maintenance checks
